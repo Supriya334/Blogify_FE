@@ -1,0 +1,10 @@
+1. SetUp React App
+2. Chakra UI install
+3. Chakra UI SetUp
+4.Context API
+
+ - createContext
+ - Context Provider
+ - useContext
+
+4.Roting( Login, Home, Blogs, Update Blogs)
