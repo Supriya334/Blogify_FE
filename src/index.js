@@ -10,8 +10,8 @@ import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ChakraProvider>
-    <AllContextProvider> // Context Provider
-      <BrowserRouter> //BrowserRouter
+    <AllContextProvider> 
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </AllContextProvider>

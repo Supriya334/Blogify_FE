@@ -8,3 +8,32 @@
  - useContext
 
 4.Roting( Login, Home, Blogs, Update Blogs)
+
+
+
+
+
+
+
+responsive layout example:-
+
+ <Flex w="100%" border="7px solid black" direction={["column", null, "row"]}
+
+      >
+        <Box p="10px" w={["100%", null, "50%"]} backgroundColor={["green"]} >
+          1
+        </Box>
+
+        <Box w={["100%",null,"50%"]}>
+          <Box p="10px" backgroundColor={["orange"]}>2</Box>
+
+          <Flex border="4px solid blue" direction={["column","row","row"]}>
+            <Box p="10px" w={["100%","50%","50%"]}  backgroundColor={["red"]}>3</Box>
+            <Box w={["100%","50%"]}>
+              <Box p="10px" backgroundColor={["yellow"]}>4a</Box>
+              <Box p="10px" backgroundColor={["blue"]}>4b</Box>
+            </Box>
+          </Flex>
+        </Box>
+
+      </Flex>
