@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PhoneIcon, AddIcon, WarningIcon, EmailIcon, LinkIcon, SearchIcon } from '@chakra-ui/icons';
 import { Image, Card, CardBody, Stack, Heading, Text, CardFooter, Button, Flex, Box, Grid } from "@chakra-ui/react";
 
+const BASE_URL = `https://blogify-be-1.onrender.com`
 function Home() {
-    function BlogCard() {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        async function getData() {
+            try {
+                let res = await fetch(`${BASE_URL}/blog`)
+                let blogData = await res.json()
+                let actualData = blogData.data;
+                console.log('blogData :', actualData);
+                setData(actualData);
+            } catch (error) {
+                console.log('Error while fetching the data...');
+            }
+        }
+        getData()
+    }, [])
+
+    function BlogCard({ author, content, imgSrc, title }) {
         return (
             <>
-
                 <Card
                     direction={["column", "column", "row"]}
                     overflow='hidden'
@@ -15,30 +31,26 @@ function Home() {
                     <Image
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
-                        src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
+                        src={imgSrc}
                         alt='Caffe Latte'
                     />
 
                     <Stack>
                         <CardBody>
-                            <Heading size='md'>The perfect latte</Heading>
+                            <Heading size='md'>{title}</Heading>
 
                             <Text py='2'>
-                                Caffè latte is a coffee beverage of Italian origin made with espresso
-                                and steamed milk.
+                                {content}
                             </Text>
                         </CardBody>
 
                         <CardFooter>
-                            <Button variant='solid' colorScheme='blue'>
-                                Buy Latte
+                            <Button variant='solid' colorScheme='green'>
+                                Read More
                             </Button>
                         </CardFooter>
                     </Stack>
                 </Card>
-
-
-
             </>
         )
     }
@@ -58,14 +70,8 @@ function Home() {
             <Heading>Your Blogs Here</Heading>
 
             <Box marginTop="40px" width="95%" marginLeft="3%" padding="20px">
-<Grid gridTemplateColumns={["repeat(1,1fr)" , "repeat(2,1fr)", "repeat(3,1fr)"]} gap={["5px", "10px" , "15px"]}>
-                
-                   <BlogCard /> <BlogCard />
-                    <BlogCard /> <BlogCard />
-                    <BlogCard /> <BlogCard />
-                    <BlogCard /> <BlogCard />
-
-               
+                <Grid gridTemplateColumns={["repeat(1,1fr)", "repeat(2,1fr)", "repeat(3,1fr)"]} gap={["5px", "10px", "15px"]}>
+                    {data.map((blog) => <BlogCard title={blog.title} content={blog.content} author={blog.author} imgSrc={blog.imgSr} />)}
                 </Grid>
             </Box>
 

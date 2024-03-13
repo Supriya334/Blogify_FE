@@ -2,11 +2,10 @@
   box-sizing: border-box;
   text-align: center;
 }
+/* CreateBlog.css */
 
-.link-items:hover {
-  background-color: chartreuse;
-
+.background {
+  position: relative;
+  overflow: hidden;
 }
 
-#root {
-}
